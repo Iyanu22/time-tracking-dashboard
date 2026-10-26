@@ -31,8 +31,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://github.com/Iyanu22/time-tracking-dashboard]
-- Live Site URL: [https://iyanu22.github.io/time-tracking-dashboard/]
+- Solution URL: [GitHub repository](https://github.com/Iyanu22/time-tracking-dashboard)
+- Live Site URL: [Live URL](https://iyanu22.github.io/time-tracking-dashboard/)
 
 ## My process
 
