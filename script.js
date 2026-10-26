@@ -7,27 +7,7 @@ const buttons = document.querySelectorAll(".timeframes button");
 
 let activities = []; 
 
-function buildCards() {
-  activities.forEach((a) => {
-    const cls = slug(a.title);
-    const card = document.createElement("article");
-    card.className = `card ${cls}`;
-    card.innerHTML = `
-      <img class="card-icon" src="./images/icon-${cls}.svg" alt="">
-      <div class="card-body">
-        <div class="card-header">
-          <h2 class="card-title">${a.title}</h2>
-          <button type="button" class="card-menu" aria-label="More options for ${a.title}">
-            <img src="./images/icon-ellipsis.svg" alt="">
-          </button>
-        </div>
-        <p class="current"></p>
-        <p class="previous"></p>
-      </div>`;
-    a.el = card;
-    dashboard.appendChild(card);
-  });
-}
+
 
 function render(timeframe) {
   activities.forEach((a) => {
@@ -46,7 +26,11 @@ async function init() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     activities = await res.json();
 
-    buildCards();
+       activities.forEach((a) => {
+      a.el = document.querySelector(`.card.${slug(a.title)}`);
+    });
+    activities = activities.filter((a) => a.el); 
+
     buttons.forEach((b) => b.addEventListener("click", () => render(b.dataset.timeframe)));
     render("weekly");
   } catch (err) {
