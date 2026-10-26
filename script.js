@@ -51,7 +51,16 @@ async function init() {
     render("weekly");
   } catch (err) {
     console.error("Could not load activity data:", err);
+    showError();
   }
+}
+
+function showError() {
+  const message = document.createElement("p");
+  message.className = "error-message";
+  message.setAttribute("role", "alert");
+  message.textContent = "Sorry, we couldn't load your activity data. Please refresh the page or try again later.";
+  dashboard.appendChild(message);
 }
 
 init();
