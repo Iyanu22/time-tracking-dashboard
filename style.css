@@ -1,0 +1,248 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(226, 43%, 10%);
+  color: white;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---------- Layout (mobile first) ---------- */
+.dashboard {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 20.4375rem;
+  width: 100%;
+}
+
+/* ---------- Profile ---------- */
+.profile {
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(235, 46%, 20%);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.profile .profile-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: hsl(246, 80%, 60%);
+  border-radius: 1rem;
+}
+.profile .profile-image {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 3px solid white;
+  flex-shrink: 0;
+}
+.profile .report-for {
+  color: hsl(236, 100%, 87%);
+  font-size: 0.9375rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.125;
+}
+.profile .name {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+.profile .timeframes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+.profile .timeframes button {
+  color: hsl(235, 45%, 61%);
+  font-size: 1.125rem;
+  line-height: 1.3125;
+  transition: color 0.2s ease-in-out;
+}
+.profile .timeframes button:hover, .profile .timeframes button:focus-visible, .profile .timeframes button[aria-pressed=true] {
+  color: white;
+}
+
+/* ---------- Activity cards ---------- */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background-color: var(--accent);
+  padding-top: 2.5rem;
+}
+.card .card-icon {
+  position: absolute;
+  top: -0.35rem;
+  right: 1rem;
+  height: 4rem;
+  width: auto;
+}
+.card .card-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  row-gap: 0.25rem;
+  padding: 1.5rem;
+  background-color: hsl(235, 46%, 20%);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.card .card-body:hover {
+  background-color: hsl(235, 45%, 30%);
+}
+.card .card-header {
+  display: contents;
+}
+.card .card-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.card .card-menu {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  padding: 0.25rem;
+}
+.card .card-menu img {
+  width: 1.25rem;
+}
+.card .card-menu:hover img, .card .card-menu:focus-visible img {
+  filter: brightness(0) invert(1);
+}
+.card .current {
+  grid-column: 1;
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+.card .previous {
+  grid-column: 2;
+  align-self: center;
+  color: hsl(236, 100%, 87%);
+  font-size: 0.8125rem;
+  text-align: right;
+}
+
+.work {
+  --accent: hsl(15, 100%, 70%);
+}
+
+.play {
+  --accent: hsl(195, 74%, 62%);
+}
+
+.study {
+  --accent: hsl(348, 100%, 68%);
+}
+
+.exercise {
+  --accent: hsl(145, 58%, 55%);
+}
+
+.social {
+  --accent: hsl(264, 64%, 52%);
+}
+
+.self-care {
+  --accent: hsl(43, 84%, 65%);
+}
+
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: hsl(236, 100%, 87%);
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* ---------- Tablet: 3 columns, profile full width on top ---------- */
+@media (min-width: 48rem) {
+  .dashboard {
+    max-width: 45rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .dashboard .profile {
+    grid-column: 1/-1;
+  }
+  .dashboard .card .card-body {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+    padding: 1.75rem;
+  }
+  .dashboard .card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dashboard .card .current {
+    grid-column: auto;
+    font-size: 3.5rem;
+    margin-top: 1.5rem;
+  }
+  .dashboard .card .previous {
+    grid-column: auto;
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+}
+/* ---------- Desktop: 4 columns, tall profile on the left ---------- */
+@media (min-width: 64rem) {
+  .dashboard {
+    max-width: 69.375rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .dashboard .profile {
+    grid-column: auto;
+    grid-row: 1/span 2;
+  }
+  .dashboard .profile .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 2rem 2rem 4rem;
+  }
+  .dashboard .profile .profile-image {
+    width: 4.875rem;
+    height: 4.875rem;
+  }
+  .dashboard .profile .name {
+    font-size: 2.5rem;
+  }
+  .dashboard .profile .timeframes {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem 2rem 2rem;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

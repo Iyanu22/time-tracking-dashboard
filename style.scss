@@ -1,0 +1,268 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Primary colors
+$Purple-600: hsl(246, 80%, 60%);
+$work: hsl(15, 100%, 70%);
+$play: hsl(195, 74%, 62%);
+$study: hsl(348, 100%, 68%);
+$exercise: hsl(145, 58%, 55%);
+$social: hsl(264, 64%, 52%);
+$Yellow-300: hsl(43, 84%, 65%);
+
+// Neutral colors
+$Navy-950: hsl(226, 43%, 10%);
+$Navy-900: hsl(235, 46%, 20%);
+$Navy-800: hsl(235, 45%, 30%); // card hover
+$Purple-500: hsl(235, 45%, 61%);
+$Navy-200: hsl(236, 100%, 87%);
+
+$tablet-breakpoint: 48rem;
+$desktop-breakpoint: 64rem;
+
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.125rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $Navy-950;
+    color: white;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+ul { list-style: none; }
+
+button {
+    font: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+/* ---------- Layout (mobile first) ---------- */
+.dashboard {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 20.4375rem;
+    width: 100%;
+}
+
+/* ---------- Profile ---------- */
+.profile {
+    display: flex;
+    flex-direction: column;
+    background-color: $Navy-900;   // navy lives on the whole card
+    border-radius: 1rem;
+    overflow: hidden;
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem;
+        background-color: $Purple-600;
+        border-radius: 1rem;
+    }
+
+    .profile-image {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: 3px solid white;
+        flex-shrink: 0;
+    }
+
+    .report-for {
+        color: $Navy-200;
+        font-size: 0.9375rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.125;
+    }
+
+    .name {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    .timeframes {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1.5rem 2rem;
+
+        button {
+            color: $Purple-500;
+            font-size: 1.125rem;
+            line-height: 1.3125;
+            transition: color 0.2s ease-in-out;
+
+            &:hover,
+            &:focus-visible,
+            &[aria-pressed="true"] {
+                color: white;
+            }
+        }
+    }
+}
+
+/* ---------- Activity cards ---------- */
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    background-color: var(--accent);
+    padding-top: 2.5rem;   // the coloured strip you see above the dark body
+
+    .card-icon {
+        position: absolute;
+        top: -0.35rem;
+        right: 1rem;
+        height: 4rem;
+        width: auto;
+    }
+
+    .card-body {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        row-gap: 0.25rem;
+        padding: 1.5rem;
+        background-color: $Navy-900;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: background-color 0.2s;
+
+        &:hover { background-color: $Navy-800; }
+    }
+
+    .card-header { display: contents; }   // lets title/menu sit in the card-body grid
+
+    .card-title {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .card-menu {
+        display: flex;
+        align-items: center;
+        justify-self: end;
+        padding: 0.25rem;
+
+        img { width: 1.25rem; }
+
+        &:hover img,
+        &:focus-visible img {
+            filter: brightness(0) invert(1);
+        }
+    }
+
+    .current {
+        grid-column: 1;
+        font-size: 2rem;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    .previous {
+        grid-column: 2;
+        align-self: center;
+        color: $Navy-200;
+        font-size: 0.8125rem;
+        text-align: right;
+    }
+}
+
+// Sass variables must be interpolated with #{ } inside custom properties
+.work      { --accent: #{$work}; }
+.play      { --accent: #{$play}; }
+.study     { --accent: #{$study}; }
+.exercise  { --accent: #{$exercise}; }
+.social    { --accent: #{$social}; }
+.self-care { --accent: #{$Yellow-300}; }
+
+.attribution {
+    font-size: 0.6875rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: $Navy-200;
+
+    a { color: hsl(228, 45%, 44%); }
+}
+
+/* ---------- Tablet: 3 columns, profile full width on top ---------- */
+@media (min-width: $tablet-breakpoint) {
+    .dashboard {
+        max-width: 45rem;
+        grid-template-columns: repeat(3, 1fr);
+
+        .profile { grid-column: 1 / -1; }
+
+        .card .card-body {
+            grid-template-columns: 1fr;
+            row-gap: 0;
+            padding: 1.75rem;
+        }
+
+        .card .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card .current {
+            grid-column: auto;
+            font-size: 3.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card .previous {
+            grid-column: auto;
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+/* ---------- Desktop: 4 columns, tall profile on the left ---------- */
+@media (min-width: $desktop-breakpoint) {
+    .dashboard {
+        max-width: 69.375rem;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        .profile {
+            grid-column: auto;        // undo the tablet value
+            grid-row: 1 / span 2;
+
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2.5rem;
+                padding: 2rem 2rem 4rem;
+            }
+
+            .profile-image {
+                width: 4.875rem;
+                height: 4.875rem;
+            }
+
+            .name { font-size: 2.5rem; }
+
+            // sibling of .profile-header, same as in the HTML
+            .timeframes {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.75rem 2rem 2rem;
+            }
+        }
+    }
+}
