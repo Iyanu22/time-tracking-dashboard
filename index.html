@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Time tracking dashboard</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 0.6875rem; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main class="dashboard">
+
+  <section class="profile" aria-label="User profile">
+    <div class="profile-header">
+      <img src="./images/image-jeremy.png" alt="Jeremy Robson" class="profile-image">
+      <div class="profile-text">
+        <p class="report-for">Report for</p>
+        <h1 class="name">Jeremy Robson</h1>
+      </div>
+    </div>
+<ul class="timeframes">
+  <li><button type="button" data-timeframe="daily" aria-pressed="false">Daily</button></li>
+  <li><button type="button" data-timeframe="weekly" aria-pressed="true">Weekly</button></li>
+  <li><button type="button" data-timeframe="monthly" aria-pressed="false">Monthly</button></li>
+</ul>
+</section>
+
+</main>
+ 
+  
+  <footer class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Iyanuoluwa Taiwo</a>.
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
